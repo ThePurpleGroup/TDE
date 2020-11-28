@@ -1,4 +1,4 @@
-package src.view;
+package br.com.senac;
 
 public class TelaPricipal {
 }
