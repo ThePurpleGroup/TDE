@@ -1,4 +1,4 @@
-package br.com.senac.model.bean;
+package br.com.senac.bean;
 
 public class Endereco {
     private Long id;

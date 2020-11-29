@@ -1,8 +1,7 @@
-package br.com.senac.model.bean;
+package br.com.senac.bean;
 
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.sql.Date;
 
 public class Cliente {
 
@@ -11,28 +10,20 @@ public class Cliente {
     private String cpf;
     private String rg;
     private String orgao;
-    private LocalDate dataNascimento;
+    private Date dataNascimento;
     private Long idEndereco;
 
     public Cliente() {
     }
 
-    public Cliente(Long id, String nome, String cpf, String rg, String orgao, LocalDate dataNascimento, Long idEndereco) {
+
+    public Cliente(Long id, String nome, String cpf, String rg, String orgao, Date dataNascimento, Long idEndereco) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
         this.orgao = orgao;
         this.dataNascimento = dataNascimento;
-        this.idEndereco = idEndereco;
-    }
-    public Cliente(Long id, String nome, String cpf, String rg, String orgao, String dataNascimento, Long idEndereco) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.rg = rg;
-        this.orgao = orgao;
-        this.setDataNascimento(dataNascimento);
         this.idEndereco = idEndereco;
     }
 
@@ -76,15 +67,16 @@ public class Cliente {
         this.orgao = orgao;
     }
 
-    public LocalDate getDataNascimento() { return dataNascimento; }
+    public Date getDataNascimento() { return dataNascimento; }
 
-    public void setDataNascimento(LocalDate dataNascimento) { this.dataNascimento = dataNascimento; }
-
-    public void setDataNascimento(String dataNascimento) { this.dataNascimento = LocalDate.parse(dataNascimento, DateTimeFormatter.ofPattern("dd/MM/yyyy")); }
+    public void setDataNascimento(Date dataNascimento) { this.dataNascimento = dataNascimento; }
 
     public Long getIdEndereco() { return idEndereco; }
 
     public void setIdEndereco(Long idEndereco) { this.idEndereco = idEndereco; }
 
-
+    @Override
+    public String toString() {
+        return "Cliente{}";
+    }
 }
