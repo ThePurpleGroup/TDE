@@ -1,7 +1,8 @@
 package br.com.senac.model.bean;
 
-import java.sql.Date;
-import java.text.DateFormat;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Cliente {
 
@@ -10,20 +11,29 @@ public class Cliente {
     private String cpf;
     private String rg;
     private String orgao;
-    private String dateNascimento;
-    private Long id_endereco;
+    private LocalDate dataNascimento;
+    private Long idEndereco;
 
     public Cliente() {
     }
 
-    public Cliente(Long id, String nome, String cpf, String rg, String orgao, String dateNascimento, Long id_endereco) {
+    public Cliente(Long id, String nome, String cpf, String rg, String orgao, LocalDate dataNascimento, Long idEndereco) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
         this.orgao = orgao;
-        this.dateNascimento = dateNascimento;
-        this.id_endereco = id_endereco;
+        this.dataNascimento = dataNascimento;
+        this.idEndereco = idEndereco;
+    }
+    public Cliente(Long id, String nome, String cpf, String rg, String orgao, String dataNascimento, Long idEndereco) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.orgao = orgao;
+        this.setDataNascimento(dataNascimento);
+        this.idEndereco = idEndereco;
     }
 
     public Long getId() {
@@ -66,19 +76,15 @@ public class Cliente {
         this.orgao = orgao;
     }
 
-    public String getDateNascimento() {
-        return dateNascimento;
-    }
+    public LocalDate getDataNascimento() { return dataNascimento; }
 
-    public void setDateNascimento(String dateNascimento) {
-        this.dateNascimento = dateNascimento;
-    }
+    public void setDataNascimento(LocalDate dataNascimento) { this.dataNascimento = dataNascimento; }
 
-    public Long getId_endereco() {
-        return id_endereco;
-    }
+    public void setDataNascimento(String dataNascimento) { this.dataNascimento = LocalDate.parse(dataNascimento, DateTimeFormatter.ofPattern("dd/MM/yyyy")); }
 
-    public void setId_endereco(Long id_endereco) {
-        this.id_endereco = id_endereco;
-    }
+    public Long getIdEndereco() { return idEndereco; }
+
+    public void setIdEndereco(Long idEndereco) { this.idEndereco = idEndereco; }
+
+
 }
