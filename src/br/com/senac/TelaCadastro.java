@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TelaCadastro {
+public class TelaCadastro extends JFrame {
 
     private JButton btnAdicionar;
     private JButton btnAtualizar;
@@ -22,8 +22,14 @@ public class TelaCadastro {
     private JTextField textCep;
     private JTextField textCidade;
     private JTextField textEstado;
+    private JPanel panelCadastro;
 
     public TelaCadastro() {
+
+        super("purple Desktop cadastro");
+        this.setContentPane(this.panelCadastro);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.pack();
 
         btnAdicionar.addActionListener(new ActionListener() {
             @Override
