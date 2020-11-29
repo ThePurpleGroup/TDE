@@ -2,7 +2,6 @@ package br.com.senac.controller;
 
 import br.com.senac.bean.Endereco;
 import br.com.senac.dao.EnderecoDAO;
-
 import java.util.List;
 
 public class EnderecoController {
