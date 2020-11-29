@@ -202,15 +202,6 @@
         </constraints>
         <properties/>
       </component>
-      <component id="18530" class="javax.swing.JTextField" binding="textCpf">
-        <constraints>
-          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <minimum-size width="60" height="-1"/>
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
       <component id="1d6ce" class="javax.swing.JTextField" binding="textRg">
         <constraints>
           <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
@@ -226,16 +217,6 @@
           </grid>
         </constraints>
         <properties/>
-      </component>
-      <component id="ce2c7" class="javax.swing.JTextField" binding="textDatanascimento">
-        <constraints>
-          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
       </component>
       <component id="acf55" class="javax.swing.JTextField" binding="textNomeRua">
         <constraints>
@@ -286,14 +267,6 @@
         <properties>
           <text value=""/>
         </properties>
-      </component>
-      <component id="44cd9" class="javax.swing.JTextField" binding="textCep">
-        <constraints>
-          <grid row="13" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties/>
       </component>
       <component id="62607" class="javax.swing.JTextField" binding="textCidade">
         <constraints>
@@ -350,6 +323,30 @@
           </grid>
         </constraints>
       </vspacer>
+      <component id="9511f" class="javax.swing.JFormattedTextField" binding="textCPF">
+        <constraints>
+          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="b44e3" class="javax.swing.JFormattedTextField" binding="textData">
+        <constraints>
+          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="8da1b" class="javax.swing.JFormattedTextField" binding="textCEP">
+        <constraints>
+          <grid row="13" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
     </children>
   </grid>
 </form>
