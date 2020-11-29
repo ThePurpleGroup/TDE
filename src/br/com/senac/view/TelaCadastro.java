@@ -1,4 +1,4 @@
-package br.com.senac;
+package br.com.senac.view;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -1,4 +1,4 @@
-package br.com.senac;
+package br.com.senac.view;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -33,10 +33,5 @@ public class TelaPrincipal extends JFrame {
 
             }
         });
-    }
-
-    public static void main(String[] args) {
-        TelaPrincipal telaPrincipal = new TelaPrincipal();
-        telaPrincipal.setVisible(true);
     }
 }
