@@ -14,7 +14,7 @@ public class EnderecoDAO implements DAO {
 
     @Override
     public void insert(Object o) {
-        Endereco en = new Endereco();
+        Endereco en = (Endereco) o;
         String sql = "insert into endereco (nome,logradouro,numero,complemento,bairro,cep,cidade,estado) values (?,?,?,?,?,?,?,?)";
 
         try {
