@@ -1,11 +1,9 @@
 package br.com.senac.view;
 
 import javax.swing.*;
-import javax.swing.text.DefaultFormatterFactory;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 import java.text.ParseException;
 
 import br.com.senac.bean.Cliente;
@@ -37,10 +35,10 @@ public class TelaCadastro extends JFrame {
     public Cliente montaCliente() {
         Cliente c = new Cliente();
         c.setNome(this.textNome.getText());
-        c.setCpf("111.222.333-44");
+        c.setCpf(this.textCPF.getText());
         c.setRg(this.textRg.getText());
         c.setOrgao(this.textOrgaoExpeditor.getText());
-        c.setDataNascimento("12/12/2000");
+        c.setDataNascimento(this.textData.getText());
         return c;
     }
 
@@ -51,7 +49,7 @@ public class TelaCadastro extends JFrame {
         en.setNumero(this.textNumeroRua.getText());
         en.setComplemento(this.textComplemento.getText());
         en.setBairro(this.textBairro.getText());
-        en.setCep("74200-200");
+        en.setCep(this.textCEP.getText());
         en.setCidade(this.textCidade.getText());
         en.setEstado(this.textEstado.getText());
         return en;
@@ -80,19 +78,19 @@ public class TelaCadastro extends JFrame {
 
         Mask textMask = new Mask();
         try {
-            textCPF = new JFormattedTextField(textMask.maskCpf(textCPF));
+            new JFormattedTextField(textMask.maskCpf(textCPF));
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         try {
-            textData = new JFormattedTextField(textMask.maskData(textData));
+            new JFormattedTextField(textMask.maskData(textData));
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         try {
-            textCEP = new JFormattedTextField(textMask.maskCep(textCEP));
+            new JFormattedTextField(textMask.maskCep(textCEP));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -133,7 +131,6 @@ public class TelaCadastro extends JFrame {
 
             }
         });
-
 
         btnAtualizar.addActionListener(new ActionListener() {
             @Override
