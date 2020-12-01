@@ -6,14 +6,15 @@ import java.sql.SQLException;
 
 public class Conection {
 
-    static String url = "jdbc:postgresql://localhost:5432/purpleDesktop";
+    static String url = "jdbc:postgresql://localhost:5432/purpleDesktopDB";
+    static String driver = "org.postgresql.Driver";
     static String usuario = "postgres";
-    static String senha = "1403";
+    static String senha = "123456";
     static Connection con;
 
     public static Connection getConexao() throws SQLException {
         try {
-
+            System.setProperty("jdbc.Drivers", driver);
             if (con == null) {
                 con = (Connection) DriverManager.getConnection(url, usuario, senha);
             }
