@@ -17,6 +17,17 @@ public class ClienteDAO implements DAO {
     public void insert(Object o) {
         Cliente c = (Cliente) o;
         String sql = "insert into cliente (nome,cpf,rg,orgao,data_nascimento,id_endereco) values (?,?,?,?,?,?)";
+        String sqlEnd = "select max(id) from endereco";
+
+        try {
+            PreparedStatement end = Conection.getConexao().prepareStatement(sqlEnd);
+            ResultSet endRs = end.executeQuery();
+
+            c.setIdEndereco(endRs.getLong("max"));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
 
         try {
             PreparedStatement ps = Conection.getConexao().prepareStatement(sql);
