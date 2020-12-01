@@ -37,11 +37,10 @@ public class TelaCadastro extends JFrame {
     public Cliente montaCliente() {
         Cliente c = new Cliente();
         c.setNome(this.textNome.getText());
-        c.setCpf(this.textCPF.getText());
+        c.setCpf("111.222.333-44");
         c.setRg(this.textRg.getText());
         c.setOrgao(this.textOrgaoExpeditor.getText());
-        c.setDataNascimento(this.textData.getText());
-        c.setIdEndereco(this.montaEndereco().getId());
+        c.setDataNascimento("12/12/2000");
         return c;
     }
 
@@ -52,7 +51,7 @@ public class TelaCadastro extends JFrame {
         en.setNumero(this.textNumeroRua.getText());
         en.setComplemento(this.textComplemento.getText());
         en.setBairro(this.textBairro.getText());
-        en.setCep(this.textCEP.getText());
+        en.setCep("74200-200");
         en.setCidade(this.textCidade.getText());
         en.setEstado(this.textEstado.getText());
         return en;
