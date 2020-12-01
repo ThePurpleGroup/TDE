@@ -22,7 +22,7 @@ public class ClienteDAO implements DAO {
         try {
             PreparedStatement end = Conection.getConexao().prepareStatement(sqlEnd);
             ResultSet endRs = end.executeQuery();
-
+            endRs.next();
             c.setIdEndereco(endRs.getLong("max"));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -35,7 +35,7 @@ public class ClienteDAO implements DAO {
             ps.setString(2, c.getCpf());
             ps.setString(3, c.getRg());
             ps.setString(4, c.getOrgao());
-            ps.setString(5, String.valueOf(c.getDataNascimento()));
+            ps.setDate(5, Date.valueOf(c.getDataNascimento()));
             ps.setLong(6, c.getIdEndereco());
 
             ps.execute();
