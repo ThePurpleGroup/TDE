@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ClienteDAO implements DAO {
             ps.setString(2, c.getCpf());
             ps.setString(3, c.getRg());
             ps.setString(4, c.getOrgao());
-            ps.setDate(5, c.getDataNascimento());
+            ps.setString(5, String.valueOf(c.getDataNascimento()));
             ps.setLong(6, c.getIdEndereco());
 
             ps.execute();
@@ -42,7 +43,7 @@ public class ClienteDAO implements DAO {
             ps.setString(2, c.getCpf());
             ps.setString(3, c.getRg());
             ps.setString(4, c.getOrgao());
-            ps.setDate(5, c.getDataNascimento());
+            ps.setString(5, String.valueOf(c.getDataNascimento()));
             ps.setLong(6, c.getIdEndereco());
             ps.setLong(7, c.getId());
 
@@ -80,7 +81,7 @@ public class ClienteDAO implements DAO {
                 c.setCpf(rs.getString("cpf"));
                 c.setRg(rs.getString("rg"));
                 c.setOrgao(rs.getString("orgao"));
-                c.setDataNascimento(rs.getDate("data_nascimento"));
+                c.setDataNascimento(rs.getString("data_nascimento"));
                 c.setIdEndereco(rs.getLong("id_endereco"));
             }
         } catch (SQLException e) {
@@ -105,7 +106,7 @@ public class ClienteDAO implements DAO {
                 c.setCpf(rs.getString("cpf"));
                 c.setRg(rs.getString("rg"));
                 c.setOrgao(rs.getString("orgao"));
-                c.setDataNascimento(rs.getDate("data_nascimento"));
+                c.setDataNascimento(rs.getString("data_nascimento"));
                 c.setIdEndereco(rs.getLong("id_endereco"));
                 list.add(c);
             }

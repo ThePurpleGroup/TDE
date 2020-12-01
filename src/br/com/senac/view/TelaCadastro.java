@@ -36,13 +36,12 @@ public class TelaCadastro extends JFrame {
 
     public Cliente montaCliente() {
         Cliente c = new Cliente();
-        Endereco en = new Endereco();
         c.setNome(this.textNome.getText());
         c.setCpf(this.textCPF.getText());
         c.setRg(this.textRg.getText());
         c.setOrgao(this.textOrgaoExpeditor.getText());
-        c.setDataNascimento(Date.valueOf(this.textData.getText()));
-        c.setIdEndereco(en.getId());
+        c.setDataNascimento(this.textData.getText());
+        c.setIdEndereco(this.montaEndereco().getId());
         return c;
     }
 

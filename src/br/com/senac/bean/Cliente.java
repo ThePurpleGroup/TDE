@@ -1,7 +1,7 @@
 package br.com.senac.bean;
 
-
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Cliente {
 
@@ -10,20 +10,29 @@ public class Cliente {
     private String cpf;
     private String rg;
     private String orgao;
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
     private Long idEndereco;
 
     public Cliente() {
     }
 
 
-    public Cliente(Long id, String nome, String cpf, String rg, String orgao, Date dataNascimento, Long idEndereco) {
+    public Cliente(Long id, String nome, String cpf, String rg, String orgao, LocalDate dataNascimento, Long idEndereco) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
         this.orgao = orgao;
         this.dataNascimento = dataNascimento;
+        this.idEndereco = idEndereco;
+    }
+    public Cliente(Long id, String nome, String cpf, String rg, String orgao, String dataNascimento, Long idEndereco) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.orgao = orgao;
+        this.setDataNascimento(dataNascimento);
         this.idEndereco = idEndereco;
     }
 
@@ -67,9 +76,11 @@ public class Cliente {
         this.orgao = orgao;
     }
 
-    public Date getDataNascimento() { return dataNascimento; }
+    public LocalDate getDataNascimento() { return dataNascimento; }
 
-    public void setDataNascimento(Date dataNascimento) { this.dataNascimento = dataNascimento; }
+    public void setDataNascimento(LocalDate dataNascimento) { this.dataNascimento = dataNascimento; }
+
+    public void setDataNascimento(String dataNascimento) { this.dataNascimento = LocalDate.parse(dataNascimento, DateTimeFormatter.ofPattern("dd/MM/yyyy")); }
 
     public Long getIdEndereco() { return idEndereco; }
 
