@@ -61,8 +61,9 @@ public class TelaPrincipal extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 TelaCadastro telaCadastro = new TelaCadastro();
+                telaCadastro.btnAtualizar.setVisible(false);
+                telaCadastro.btnExcluir.setVisible(false);
                 telaCadastro.setVisible(true);
-                telaCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 telaCadastro.addWindowListener(new WindowAdapter() {
 
                     @Override
@@ -87,19 +88,19 @@ public class TelaPrincipal extends JFrame {
                     Cliente cliente = (Cliente) clienteDAO.select(i);
                     Endereco endereco = (Endereco) enderecoDAO.select(Math.toIntExact(cliente.getIdEndereco()));
                     telaCadastro.preencheCadastro(cliente, endereco);
+                    telaCadastro.setVisible(true);
+                    telaCadastro.addWindowListener(new WindowAdapter() {
+
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            super.windowClosed(e);
+                            preencherTabela();
+                        }
+                    });
                 }else{
                     JOptionPane.showMessageDialog(rootPane, " É necessario selecionar um Cliente para continuar");
                 }
-                telaCadastro.setVisible(true);
-                telaCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                telaCadastro.addWindowListener(new WindowAdapter() {
 
-                    @Override
-                    public void windowClosed(WindowEvent e) {
-                        super.windowClosed(e);
-                        preencherTabela();
-                    }
-                });
             }
         });
     }
