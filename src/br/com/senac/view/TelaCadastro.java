@@ -1,7 +1,6 @@
 package br.com.senac.view;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +11,6 @@ import br.com.senac.bean.Cliente;
 import br.com.senac.bean.Endereco;
 import br.com.senac.controller.ClienteController;
 import br.com.senac.controller.EnderecoController;
-import br.com.senac.dao.ClienteDAO;
 import br.com.senac.utils.Mask;
 
 public class TelaCadastro extends JFrame {
@@ -54,7 +52,6 @@ public class TelaCadastro extends JFrame {
        textComplemento.setText(enderecoSelecionado.getComplemento());
        textEstado.setText(enderecoSelecionado.getEstado());
        textNumeroRua.setText(enderecoSelecionado.getNumero());
-
     }
 
     public Cliente montaCliente() {
@@ -95,15 +92,11 @@ public class TelaCadastro extends JFrame {
     }
 
     public TelaCadastro() {
-
-
         super("purple Desktop cadastro");
+        this.setLocation(436,135);
         this.setContentPane(this.panelCadastro);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
-
-
-
 
         Mask textMask = new Mask();
         try {
@@ -124,8 +117,6 @@ public class TelaCadastro extends JFrame {
             e.printStackTrace();
         }
 
-
-
         btnAdicionar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -135,7 +126,6 @@ public class TelaCadastro extends JFrame {
                         textOrgaoExpeditor.getText() != null && !textOrgaoExpeditor.getText().equals("") &&
                         textData.getText() != null && !textData.getText().equals("") &&
                         textNomeRua.getText() != null && !textNomeRua.getText().equals("") &&
-
                         textTipoRua.getText() != null && !textTipoRua.getText().equals("") &&
                         !textNumeroRua.getText().equals("") &&
                         textComplemento.getText() != null && !textComplemento.getText().equals("") &&
@@ -159,7 +149,6 @@ public class TelaCadastro extends JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "Erro! Cliente não Cadastrado!");
                 }
-
             }
         });
 
@@ -172,7 +161,6 @@ public class TelaCadastro extends JFrame {
                         textOrgaoExpeditor.getText() != null && !textOrgaoExpeditor.getText().equals("") &&
                         textData.getText() != null && !textData.getText().equals("") &&
                         textNomeRua.getText() != null && !textNomeRua.getText().equals("") &&
-
                         textTipoRua.getText() != null && !textTipoRua.getText().equals("") &&
                         !textNumeroRua.getText().equals("") &&
                         textComplemento.getText() != null && !textComplemento.getText().equals("") &&
@@ -195,9 +183,9 @@ public class TelaCadastro extends JFrame {
 
                     limpaTela();
 
-                    JOptionPane.showMessageDialog(null,"Cliente Cadastrado com Sucesso!");
+                    JOptionPane.showMessageDialog(null,"Cliente Atualizado com Sucesso!");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Erro! Cliente não Cadastrado!");
+                    JOptionPane.showMessageDialog(null, "Erro! Cliente não Atualizado!");
                 }
             }
         });
@@ -209,5 +197,4 @@ public class TelaCadastro extends JFrame {
             }
         });
     }
-
 }

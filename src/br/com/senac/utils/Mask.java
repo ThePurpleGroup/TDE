@@ -19,6 +19,7 @@ public class Mask {
         textField.setFormatterFactory(format);
         return mask;
     }
+
     public MaskFormatter maskCpf(JFormattedTextField textField) throws ParseException{
         MaskFormatter mask;
         mask = new MaskFormatter("###.###.###-##");
@@ -29,6 +30,7 @@ public class Mask {
         textField.setFormatterFactory(format);
         return mask;
     }
+
     public MaskFormatter maskData(JFormattedTextField textField) throws ParseException{
         MaskFormatter mask;
         mask = new MaskFormatter("##/##/####");

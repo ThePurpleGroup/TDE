@@ -24,38 +24,31 @@ public class TelaPrincipal extends JFrame {
     public void preencherTabela() {
 
         DefaultTableModel model = new javax.swing.table.DefaultTableModel(
-                new Object [][] {
+                new Object[][]{
                 },
-                new String [] {
+                new String[]{
                         "Id", "Nome", "Data de Nascimento"
                 }
-        ){
+        ) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                //all cells false
                 return false;
             }
         };
 
-
-
         ClienteDAO clienteDAO = new ClienteDAO();
-
         for (Object o : clienteDAO.select()) {
 
             Cliente cliente = (Cliente) o;
-
             model.addRow(new Object[]{
                     Math.toIntExact(cliente.getId()),
                     cliente.getNome(),
                     cliente.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
 
             });
-
         }
         tableCliente.setModel(model);
         jScrollPanel.setViewportView(tableCliente);
-
 
     }
 
@@ -63,6 +56,7 @@ public class TelaPrincipal extends JFrame {
 
         super("purple Desktop");
         this.setContentPane(this.panelPrincipal);
+        this.setLocation(341,45);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
         preencherTabela();
@@ -81,8 +75,9 @@ public class TelaPrincipal extends JFrame {
                 TelaCadastro telaCadastro = new TelaCadastro();
                 ClienteDAO clienteDAO = new ClienteDAO();
                 EnderecoDAO enderecoDAO = new EnderecoDAO();
-                int i = Integer.parseInt(tableCliente.getValueAt(tableCliente.getSelectedRow(),0).toString());
-                Cliente cliente = (Cliente) clienteDAO.select(i);;
+                int i = Integer.parseInt(tableCliente.getValueAt(tableCliente.getSelectedRow(), 0).toString());
+                Cliente cliente = (Cliente) clienteDAO.select(i);
+                ;
                 Endereco endereco = (Endereco) enderecoDAO.select(Math.toIntExact(cliente.getIdEndereco()));
                 telaCadastro.preencheCadastro(cliente, endereco);
                 telaCadastro.setVisible(true);

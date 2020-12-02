@@ -7,7 +7,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +27,6 @@ public class ClienteDAO implements DAO {
             throwables.printStackTrace();
         }
 
-
         try {
             PreparedStatement ps = Conection.getConexao().prepareStatement(sql);
             ps.setString(1, c.getNome());
@@ -37,7 +35,6 @@ public class ClienteDAO implements DAO {
             ps.setString(4, c.getOrgao());
             ps.setDate(5, Date.valueOf(c.getDataNascimento()));
             ps.setLong(6, c.getIdEndereco());
-
             ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -56,7 +53,6 @@ public class ClienteDAO implements DAO {
             ps.setString(4, c.getOrgao());
             ps.setDate(5, Date.valueOf(c.getDataNascimento()));
             ps.setLong(6, c.getId());
-
             ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -74,7 +70,6 @@ public class ClienteDAO implements DAO {
             ps.execute();
 
         } catch (SQLException e) {
-
             e.printStackTrace();
         }
     }
@@ -97,7 +92,6 @@ public class ClienteDAO implements DAO {
                 c.setIdEndereco(rs.getLong("id_endereco"));
             }
         } catch (SQLException e) {
-
             e.printStackTrace();
         }
         return c;
@@ -123,11 +117,8 @@ public class ClienteDAO implements DAO {
                 list.add(c);
             }
         } catch (SQLException e) {
-
             e.printStackTrace();
         }
         return list;
     }
-
-
 }

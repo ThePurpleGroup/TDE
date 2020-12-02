@@ -1,6 +1,5 @@
 package br.com.senac.dao;
 
-import br.com.senac.bean.Cliente;
 import br.com.senac.bean.Endereco;
 import br.com.senac.utils.Conection;
 
@@ -27,7 +26,6 @@ public class EnderecoDAO implements DAO {
             ps.setString(6, en.getCep());
             ps.setString(7, en.getCidade());
             ps.setString(8, en.getEstado());
-
             ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -49,7 +47,6 @@ public class EnderecoDAO implements DAO {
             ps.setString(7, en.getCidade());
             ps.setString(8, en.getEstado());
             ps.setLong(9, en.getId());
-
             ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -67,7 +64,6 @@ public class EnderecoDAO implements DAO {
             ps.execute();
 
         } catch (SQLException e) {
-
             e.printStackTrace();
         }
     }
@@ -92,7 +88,6 @@ public class EnderecoDAO implements DAO {
                 en.setEstado(rs.getString("estado"));
             }
         } catch (SQLException e) {
-
             e.printStackTrace();
         }
         return en;
@@ -120,7 +115,6 @@ public class EnderecoDAO implements DAO {
                 list.add(en);
             }
         } catch (SQLException e) {
-
             e.printStackTrace();
         }
         return list;

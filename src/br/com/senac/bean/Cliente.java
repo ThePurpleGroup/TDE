@@ -18,7 +18,6 @@ public class Cliente {
     public Cliente() {
     }
 
-
     public Cliente(Long id, String nome, String cpf, String rg, String orgao, LocalDate dataNascimento, Long idEndereco) {
         this.id = id;
         this.nome = nome;
@@ -28,6 +27,7 @@ public class Cliente {
         this.dataNascimento = dataNascimento;
         this.idEndereco = idEndereco;
     }
+
     public Cliente(Long id, String nome, String cpf, String rg, String orgao, String dataNascimento, Long idEndereco) {
         this.id = id;
         this.nome = nome;
@@ -92,6 +92,6 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{}";
+        return "Dados Carregados!";
     }
 }
