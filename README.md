@@ -25,6 +25,7 @@ Para executar vamos precisar primeiro de algumas coisas:
 Para executar recomendamos o uso da IDE [IntelliJ IDEA Community](https://www.jetbrains.com/pt-br/idea/download/) pois 
 foi onde fizemos toda a criação do codigo tornando assim possivel editar os .form caso necessario.
 
+A Classe **main** do projeto se encontra em _./br/com/senac/utils/Principal.java_
 
 ##Detalhes
 
