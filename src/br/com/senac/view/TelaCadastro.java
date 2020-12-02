@@ -15,9 +15,9 @@ import br.com.senac.utils.Mask;
 
 public class TelaCadastro extends JFrame {
 
-    private JButton btnAdicionar;
-    private JButton btnAtualizar;
-    private JButton btnExcluir;
+    public JButton btnAdicionar;
+    public JButton btnAtualizar;
+    public JButton btnExcluir;
     private JTextField textNome;
     private JTextField textRg;
     private JTextField textOrgaoExpeditor;
@@ -144,6 +144,7 @@ public class TelaCadastro extends JFrame {
                     clienteController.insert(c);
 
                     limpaTela();
+                    dispose();
 
                     JOptionPane.showMessageDialog(null,"Cliente Cadastrado com Sucesso!");
                 } else {
@@ -182,6 +183,7 @@ public class TelaCadastro extends JFrame {
                     clienteController.update(c);
 
                     limpaTela();
+                    dispose();
 
                     JOptionPane.showMessageDialog(null,"Cliente Atualizado com Sucesso!");
                 } else {
@@ -196,5 +198,7 @@ public class TelaCadastro extends JFrame {
 
             }
         });
+
+
     }
 }
