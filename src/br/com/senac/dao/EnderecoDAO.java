@@ -36,8 +36,8 @@ public class EnderecoDAO implements DAO {
 
     @Override
     public void update(Object o) {
-        Endereco en = new Endereco();
-        String sql = "update cliente set nome=?,logradouro=?,numero=?,complemento=?,bairro=?,cep=?,cidade=?,estado=? where id=?";
+        Endereco en = (Endereco) o;
+        String sql = "update endereco set nome=?,logradouro=?,numero=?,complemento=?,bairro=?,cep=?,cidade=?,estado=? where id=?";
         try {
             PreparedStatement ps = Conection.getConexao().prepareStatement(sql);
             ps.setString(1, en.getNome());
@@ -75,11 +75,13 @@ public class EnderecoDAO implements DAO {
     @Override
     public Object select(int i) {
         Endereco en = new Endereco();
-        String sql = "select * from cliente where id=?";
+        String sql = "select * from endereco where id=?";
         try {
             PreparedStatement ps = Conection.getConexao().prepareStatement(sql);
+            ps.setInt(1, i);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                en.setId(rs.getLong("id"));
                 en.setNome(rs.getString("nome"));
                 en.setLogradouro(rs.getString("logradouro"));
                 en.setNumero(rs.getString("numero"));
@@ -106,6 +108,7 @@ public class EnderecoDAO implements DAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Endereco en = new Endereco();
+                en.setId(rs.getLong("id"));
                 en.setNome(rs.getString("nome"));
                 en.setLogradouro(rs.getString("logradouro"));
                 en.setNumero(rs.getString("numero"));
