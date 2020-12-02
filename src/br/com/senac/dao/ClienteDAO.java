@@ -47,16 +47,15 @@ public class ClienteDAO implements DAO {
     @Override
     public void update(Object o) {
         Cliente c = (Cliente) o;
-        String sql = "update cliente set nome=?,cpf=?,rg=?,orgao=?,data_nascimento=?,id_endereco=? where id=?";
+        String sql = "update cliente set nome=?,cpf=?,rg=?,orgao=?,data_nascimento=? where id=?";
         try {
             PreparedStatement ps = Conection.getConexao().prepareStatement(sql);
             ps.setString(1, c.getNome());
             ps.setString(2, c.getCpf());
             ps.setString(3, c.getRg());
             ps.setString(4, c.getOrgao());
-            ps.setString(5, String.valueOf(c.getDataNascimento()));
-            ps.setLong(6, c.getIdEndereco());
-            ps.setLong(7, c.getId());
+            ps.setDate(5, Date.valueOf(c.getDataNascimento()));
+            ps.setLong(6, c.getId());
 
             ps.execute();
         } catch (SQLException e) {
@@ -86,13 +85,15 @@ public class ClienteDAO implements DAO {
         String sql = "select * from cliente where id=?";
         try {
             PreparedStatement ps = Conection.getConexao().prepareStatement(sql);
+            ps.setInt(1, i);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                c.setId(rs.getLong("id"));
                 c.setNome(rs.getString("nome"));
                 c.setCpf(rs.getString("cpf"));
                 c.setRg(rs.getString("rg"));
                 c.setOrgao(rs.getString("orgao"));
-                c.setDataNascimento(rs.getString("data_nascimento"));
+                c.setDataNascimento(rs.getDate("data_nascimento"));
                 c.setIdEndereco(rs.getLong("id_endereco"));
             }
         } catch (SQLException e) {
@@ -117,7 +118,7 @@ public class ClienteDAO implements DAO {
                 c.setCpf(rs.getString("cpf"));
                 c.setRg(rs.getString("rg"));
                 c.setOrgao(rs.getString("orgao"));
-                c.setDataNascimento(rs.getString("data_nascimento"));
+                c.setDataNascimento(rs.getDate("data_nascimento"));
                 c.setIdEndereco(rs.getLong("id_endereco"));
                 list.add(c);
             }
@@ -127,4 +128,6 @@ public class ClienteDAO implements DAO {
         }
         return list;
     }
+
+
 }
