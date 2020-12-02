@@ -1,15 +1,18 @@
 package br.com.senac.view;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.time.format.DateTimeFormatter;
 
 import br.com.senac.bean.Cliente;
 import br.com.senac.bean.Endereco;
 import br.com.senac.controller.ClienteController;
 import br.com.senac.controller.EnderecoController;
+import br.com.senac.dao.ClienteDAO;
 import br.com.senac.utils.Mask;
 
 public class TelaCadastro extends JFrame {
@@ -31,6 +34,28 @@ public class TelaCadastro extends JFrame {
     private JFormattedTextField textCPF;
     private JFormattedTextField textData;
     private JFormattedTextField textCEP;
+    public Cliente atualCliente;
+    public Endereco atualEndereco;
+
+    public void preencheCadastro(Cliente clienteSelecionado, Endereco  enderecoSelecionado){
+       this.atualCliente = clienteSelecionado;
+       this.atualEndereco = enderecoSelecionado;
+
+       textNome.setText(clienteSelecionado.getNome());
+       textCPF.setText(clienteSelecionado.getCpf());
+       textRg.setText(clienteSelecionado.getRg());
+       textOrgaoExpeditor.setText(clienteSelecionado.getOrgao());
+       textData.setText(clienteSelecionado.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+       textNomeRua.setText(enderecoSelecionado.getNome());
+       textTipoRua.setText(enderecoSelecionado.getLogradouro());
+       textCEP.setText(enderecoSelecionado.getCep());
+       textBairro.setText(enderecoSelecionado.getBairro());
+       textCidade.setText(enderecoSelecionado.getCidade());
+       textComplemento.setText(enderecoSelecionado.getComplemento());
+       textEstado.setText(enderecoSelecionado.getEstado());
+       textNumeroRua.setText(enderecoSelecionado.getNumero());
+
+    }
 
     public Cliente montaCliente() {
         Cliente c = new Cliente();
@@ -71,10 +96,14 @@ public class TelaCadastro extends JFrame {
 
     public TelaCadastro() {
 
+
         super("purple Desktop cadastro");
         this.setContentPane(this.panelCadastro);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
+
+
+
 
         Mask textMask = new Mask();
         try {
@@ -94,6 +123,8 @@ public class TelaCadastro extends JFrame {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+
 
         btnAdicionar.addActionListener(new ActionListener() {
             @Override
@@ -135,7 +166,39 @@ public class TelaCadastro extends JFrame {
         btnAtualizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (textNome.getText() != null && !textNome.getText().equals("") &&
+                        textCPF.getText() != null && !textCPF.getText().equals("") &&
+                        textRg.getText() != null && !textRg.getText().equals("") &&
+                        textOrgaoExpeditor.getText() != null && !textOrgaoExpeditor.getText().equals("") &&
+                        textData.getText() != null && !textData.getText().equals("") &&
+                        textNomeRua.getText() != null && !textNomeRua.getText().equals("") &&
 
+                        textTipoRua.getText() != null && !textTipoRua.getText().equals("") &&
+                        !textNumeroRua.getText().equals("") &&
+                        textComplemento.getText() != null && !textComplemento.getText().equals("") &&
+                        textBairro.getText() != null && !textBairro.getText().equals("") &&
+                        textCEP.getText() != null && !textCEP.getText().equals("") &&
+                        textCidade.getText() != null && !textCidade.getText().equals("") &&
+                        textEstado.getText() != null && !textEstado.getText().equals("")) {
+
+                    Endereco en = montaEndereco();
+                    Cliente c = montaCliente();
+
+                    en.setId(atualEndereco.getId());
+                    c.setId(atualCliente.getId());
+
+                    EnderecoController enderecoController = new EnderecoController();
+                    ClienteController clienteController = new ClienteController();
+
+                    enderecoController.update(en);
+                    clienteController.update(c);
+
+                    limpaTela();
+
+                    JOptionPane.showMessageDialog(null,"Cliente Cadastrado com Sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro! Cliente não Cadastrado!");
+                }
             }
         });
 
