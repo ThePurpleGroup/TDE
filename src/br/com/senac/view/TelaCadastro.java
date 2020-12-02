@@ -39,19 +39,43 @@ public class TelaCadastro extends JFrame {
        this.atualCliente = clienteSelecionado;
        this.atualEndereco = enderecoSelecionado;
 
+       mascaraCampos();
+
        textNome.setText(clienteSelecionado.getNome());
-       textCPF.setText(clienteSelecionado.getCpf());
+       textCPF.setValue(clienteSelecionado.getCpf());
        textRg.setText(clienteSelecionado.getRg());
        textOrgaoExpeditor.setText(clienteSelecionado.getOrgao());
-       textData.setText(clienteSelecionado.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+       textData.setValue(clienteSelecionado.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
        textNomeRua.setText(enderecoSelecionado.getNome());
        textTipoRua.setText(enderecoSelecionado.getLogradouro());
-       textCEP.setText(enderecoSelecionado.getCep());
+       textCEP.setValue(enderecoSelecionado.getCep());
        textBairro.setText(enderecoSelecionado.getBairro());
        textCidade.setText(enderecoSelecionado.getCidade());
        textComplemento.setText(enderecoSelecionado.getComplemento());
        textEstado.setText(enderecoSelecionado.getEstado());
        textNumeroRua.setText(enderecoSelecionado.getNumero());
+
+    }
+
+    public void mascaraCampos(){
+        Mask textMask = new Mask();
+        try {
+            new JFormattedTextField(textMask.maskCpf(textCPF));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            new JFormattedTextField(textMask.maskData(textData));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            new JFormattedTextField(textMask.maskCep(textCEP));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public Cliente montaCliente() {
@@ -97,25 +121,8 @@ public class TelaCadastro extends JFrame {
         this.setContentPane(this.panelCadastro);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
+        mascaraCampos();
 
-        Mask textMask = new Mask();
-        try {
-            new JFormattedTextField(textMask.maskCpf(textCPF));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            new JFormattedTextField(textMask.maskData(textData));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            new JFormattedTextField(textMask.maskCep(textCEP));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
 
         btnAdicionar.addActionListener(new ActionListener() {
             @Override
@@ -195,7 +202,23 @@ public class TelaCadastro extends JFrame {
         btnExcluir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String[] options = {"Sim", "Não"};
+                int conf = JOptionPane.showOptionDialog(null, "Deseja realmente excluir esse registro?", "Confirmar", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+                if(conf == JOptionPane.YES_OPTION){
+                    EnderecoController enderecoController = new EnderecoController();
+                    ClienteController clienteController = new ClienteController();
 
+                    clienteController.delete(atualCliente);
+                    enderecoController.delete(atualEndereco);
+
+
+                    limpaTela();
+
+                    JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso!");
+                    dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Exclusão cancelada!");
+                }
             }
         });
 
