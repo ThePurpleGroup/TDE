@@ -1,5 +1,7 @@
 package br.com.senac.bean;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -76,9 +78,11 @@ public class Cliente {
         this.orgao = orgao;
     }
 
-    public LocalDate getDataNascimento() { return dataNascimento; }
+    public LocalDate getDataNascimento() {return dataNascimento;}
 
     public void setDataNascimento(LocalDate dataNascimento) { this.dataNascimento = dataNascimento; }
+
+    public void setDataNascimento(Date dataNascimento) {this.dataNascimento = dataNascimento.toLocalDate();}
 
     public void setDataNascimento(String dataNascimento) { this.dataNascimento = LocalDate.parse(dataNascimento, DateTimeFormatter.ofPattern("dd/MM/yyyy")); }
 
