@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TDE:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TDE_jar</output-path>
+    <root id="archive" name="TDE.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$USER_HOME$/OneDrive/Área de Trabalho/TDEJAR/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="TDE" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/postgresql-42.2.18.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
